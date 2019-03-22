@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--Header script-->
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+<!--Navigation Bar-->
+<nav th:replace="base :: navbar"></nav>
+
+
+<div class="container">
+    <h5>Post your message</h5>
+    <div class="py-5">
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form action="#"
+                      method="post"
+                      th:action="@{/process}"
+                      th:object="${message}">
+
+                    <input th:field="*{id}" type="hidden"/>
+                    <div class="form-group">
+
+                        <label>Title</label><br>
+                        <input th:field="*{title}" type="text">
+                        <span th:errors="*{title}"
+                              th:if="${#fields.hasErrors('title')}"></span><br/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message</label><br>
+                        <textarea rows="8" th:field="*{content} "></textarea>
+                        <span th:errors="*{title}"
+                              th:if="${#fields.hasErrors('content')}"></span><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date Posted</label><br>
+                        <input th:field="*{postedDate}" type="date"/>
+                        <span th:errors="*{postedDate}"
+                              th:if="${#fields.hasErrors('postedDate')}"></span><br/>
+                    </div>
+                    <div class="form-group">
+                        <label>Posted By</label><br>
+                        <input th:field="*{postedBy}" type="text"/>
+                        <span th:errors="*{postedBy}"
+                              th:if="${#fields.hasErrors('postedBy')}"></span><br/>
+                    </div>
+                    <br/>
+                    <input type="submit" value="Post">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <div th:replace="base :: footer"></div>
+    <!-- JS Links -->
+    <th:block  th:replace="base :: jslinks"></th:blockdiv>
+
+</body>
+</html>

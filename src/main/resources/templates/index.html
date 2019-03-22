@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<!--Header script-->
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+<!--Navigation replacement-->
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <div class="py-3 px-3">
+
+    </div>
+    <a href="/list">Show All Messages</a><br />
+    <!--ID :<span th:text="${message.id}" ></span><br />-->
+    Title :<span th:text="${message.title}" ></span><br />
+    Content :<span th:text="${message.content}" ></span><br />
+    Posted Date :<span th:date="${message.postedDate}" ></span><br />
+    Posted By :<span th:text="${message.postedBy}" ></span><br />
+    <a href="@{/delete/{message.id}(id=${message.id})}">Delete this Message</a>
+
+    <!-- Footer -->
+    <div th:replace="base :: footer"></div>
+    <!-- JS Links -->
+    <div th:replace="base :: jslinks"></div>
+
+</div>
+</body>
+</html>

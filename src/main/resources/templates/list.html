@@ -1,0 +1,54 @@
+<!-- Messages -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<!--Header script-->
+<head>
+    <title>View All Messages</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+<!--Navigation replacement-->
+<nav th:replace="base :: navbar"></nav>
+
+<!-- Database-->
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Posted Date</th>
+            <th>Posted By</th>
+            <!-- Add a picture of the person here-->
+            <!--<th>Picture</th>-->
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="message : ${message}">
+            <td th:text="${message.title}"></td>
+            <td th:text="${message.content}"></td>
+            <td th:text="${message.postedDate}"></td>
+            <td th:text="${message.postedBy}"></td>
+            <td>
+                <!--<img th:src="${message.messagePic == null}?'':${message.messagePic}" />-->
+            </td>
+            <td>
+                <a th:href="@{/update/{id}(id=${message.id})}">Update</a>
+                <a th:href="@{/detail/{id}(id=${message.id})}">Details</a>
+                <a th:href="@{/delete/{id}(id=${message.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="base :: footer"></div>
+<!-- JS Links -->
+<div th:replace="base :: jslinks"></div>
+
+</body>
+</html>
